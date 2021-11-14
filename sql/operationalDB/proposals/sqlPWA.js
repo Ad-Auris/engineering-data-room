@@ -1,3 +1,18 @@
+/*
+Purpose of this file is to illustrate some additional table updates for the upcoming PWA build.
+
+Proposed Tables Updates:
+
+TTSP (update)
+
+article_metadata (new)
+
+audio_metadata (new)
+
+custom_styles (update)
+
+ **/
+
 const TTSPUpdate1 = {
   id: "<INT>",
   date: "<STRING",
@@ -22,6 +37,8 @@ const TTSPUpdate1 = {
   music: "<STRING>",
   ct_link: "<STRING>",
   experiment: "<STRING>",
+  article_metadata_id: "<INT>",
+  audio_metadata_id: "<INT>",
 };
 
 const ttspArticleMetaData = {
