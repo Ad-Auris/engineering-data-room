@@ -20,7 +20,7 @@ const article_metadata = {
 };
 
 const narration_stats = {
-  listens: "<INT>", 
+  total_listens: "<INT>", 
   tts_package_id: "<INT>",
 };
 
