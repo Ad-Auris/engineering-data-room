@@ -8,6 +8,10 @@ article_metadata (new)
 text_classification (new)
 
 narration_stats (new)
+
+play_app_excluded_org (new)
+
+play_app_excluded_ttsp (new)
  **/
 
 const article_metadata = {
@@ -27,4 +31,14 @@ const narration_stats = {
 const text_classification = {
     id: "<INT>",
     ttsp_article_meta_data: "<INT>",
+};
+
+const play_app_excluded_org = {
+  id: "<INT>",
+  organization_id: "<INT>", // unique constraint
+};
+
+const play_app_excluded_ttsp = {
+  id: "<INT>",
+  tts_package_id: "<INT>", // unique constraint
 };
