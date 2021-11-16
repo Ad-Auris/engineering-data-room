@@ -16,7 +16,7 @@ play_app_excluded_ttsp (new)
 
 const article_metadata = {
   id: "<INT>",
-  publish_date: "<STRING",
+  publish_date: "TIMESTAMP",
   category: "<STRING>", // used on UI
   image_url: "<STRING>",
   text_classification_id: "<INT>",
@@ -30,7 +30,7 @@ const narration_stats = {
 
 const text_classification = {
   id: "<INT>",
-  article_meta_data_id:"<INT>",
+  article_metadata_id:"<INT>",
   class: "<STRING>", //NOT NULL
   subclass_1: "<STRING>",// Can be null
   subclass_2: "<STRING>",// Can be null
