@@ -30,10 +30,10 @@ const narration_stats = {
 
 const text_classification = {
   id: "<INT>",
-  article_meta_data:"<INT>",
+  article_meta_data_id:"<INT>",
   class: "<STRING>", //NOT NULL
-  subclass1: "<STRING>",// Can be null
-  subclass2: "<STRING>",// Can be null
+  subclass_1: "<STRING>",// Can be null
+  subclass_2: "<STRING>",// Can be null
   confidence: "DECIMAL(3,2)", //0.00 to 1.00
 };
 
