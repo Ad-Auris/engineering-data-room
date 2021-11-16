@@ -29,8 +29,12 @@ const narration_stats = {
 };
 
 const text_classification = {
-    id: "<INT>",
-    ttsp_article_meta_data: "<INT>",
+  id: "<INT>",
+  article_meta_data:"<INT>",
+  class: "<STRING>", //NOT NULL
+  subclass1: "<STRING>",// Can be null
+  subclass2: "<STRING>",// Can be null
+  confidence: "DECIMAL(3,2)", //0.00 to 1.00
 };
 
 const play_app_excluded_org = {
@@ -42,3 +46,4 @@ const play_app_excluded_ttsp = {
   id: "<INT>",
   tts_package_id: "<INT>", // unique constraint
 };
+
