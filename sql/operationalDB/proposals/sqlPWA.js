@@ -19,7 +19,6 @@ const article_metadata = {
   publish_date: "TIMESTAMP",
   category: "<STRING>", // used on UI
   image_url: "<STRING>",
-  text_classification_id: "<INT>",
   tts_package_id: "<INT>",
 };
 
