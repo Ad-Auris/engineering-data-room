@@ -38,7 +38,7 @@ const text_classification = {
 
 const play_app_excluded_org = {
   id: "<INT>",
-  organization_id: "<INT>", // unique constraint
+  organisation_id: "<INT>", // unique constraint
 };
 
 const play_app_excluded_ttsp = {
