@@ -307,7 +307,6 @@ Table sub_heading_setting[headercolor: #8e44ad] {
 Table pronunciation[headercolor: #8e44ad] {
     id SERIAL
     narration_setting_id INTEGER//FK
-    language language
     original TEXT
     replacement TEXT
 }
