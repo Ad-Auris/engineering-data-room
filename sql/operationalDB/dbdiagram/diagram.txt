@@ -369,16 +369,6 @@ Enum tts_provider {
 // ================  TABLES FOR: REMOVAL TOOL SETTINGS  =================
 
 
-// Most likley not for this table (experimenting)
-Table removal_config[headercolor: #8e44ad] {
-    id SERIAL //PRIMARY KEY NOT NULL,
-    narration_setting_id INTEGER //REFERENCES narration_settings_id(id),
-    removal_type TEXT // E.G:  "Remove First Instance by HTML Tag"
-    start_html_statement TEXT // E.G:  "<strong>"
-    end_html_tag TEXT // E.G:  "</strong>"
-    settings_name TEXT // E.G: Remove Double Author Blurb
-}
-
 Table html_tag_replacement [headercolor: #8e44ad] {
     id SERIAL //PRIMARY KEY NOT NULL,
     narration_setting_id INTEGER //REFERENCES narration_settings_id(id),
