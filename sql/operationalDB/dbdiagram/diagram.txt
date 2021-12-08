@@ -341,9 +341,15 @@ Table scraping_setting[headercolor: #8e44ad] {
     scraper_api TEXT // DEFAULT "diffbot"
 }
 
-// language ENUM(en, en_uk, fr, es, ru, cn ,ar,........ )
-Table language_list[headercolor: #8e44ad] {
-    id SERIAL //PRIMARY KEY NOT NULL, 
+Enum language {
+  ar
+  en
+  es
+  fr
+  hi
+  pt
+  ru
+  zh
 }
 
 
