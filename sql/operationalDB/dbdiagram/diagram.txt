@@ -217,7 +217,7 @@ Table title_setting[headercolor: #8e44ad] {
     id SERIAL //PRIMARY KEY NOT NULL,
     narration_setting_id INTEGER//FK
     read BOOLEAN
-    voice INTEGER //FK
+    voice_id INTEGER //FK
     pitch INTEGER
     rate INTEGER
     break_time INTEGER
@@ -226,7 +226,7 @@ Table title_setting[headercolor: #8e44ad] {
 Table quote_setting[headercolor: #8e44ad] {
     id SERIAL //PRIMARY KEY NOT NULL,
     narration_setting_id INTEGER//FK
-    voice INTEGER //FK
+    voice_id INTEGER //FK
     pitch INTEGER
     rate INTEGER
     break_time INTEGER
@@ -236,7 +236,7 @@ Table quote_setting[headercolor: #8e44ad] {
 Table block_quote_setting[headercolor: #8e44ad] {
     id SERIAL //PRIMARY KEY NOT NULL,
     narration_setting_id INTEGER//FK
-    voice INTEGER //FK
+    voice_id INTEGER //FK
     pitch INTEGER
     rate INTEGER
     break_time INTEGER
@@ -247,7 +247,7 @@ Table author_setting[headercolor: #8e44ad] {
     id SERIAL //PRIMARY KEY NOT NULL,
     narration_setting_id INTEGER//FK
     read BOOLEAN
-    voice INTEGER //FK
+    voice_id INTEGER //FK
     pitch INTEGER
     rate INTEGER
     break_time INTEGER
@@ -273,7 +273,7 @@ Table below_title_setting[headercolor: #8e44ad] {
     id SERIAL //PRIMARY KEY NOT NULL,
     narration_setting_id INTEGER//FK
     read BOOLEAN
-    voice INTEGER //FK
+    voice_id INTEGER //FK
     pitch INTEGER
     rate INTEGER
     break_time INTEGER
@@ -282,7 +282,7 @@ Table below_title_setting[headercolor: #8e44ad] {
 Table body_setting[headercolor: #8e44ad] {
     id SERIAL //PRIMARY KEY NOT NULL,
     narration_setting_id INTEGER//FK
-    voice INTEGER //FK
+    voice_id INTEGER //FK
     pitch INTEGER
     rate INTEGER
     break_time INTEGER
@@ -294,6 +294,7 @@ Table body_setting[headercolor: #8e44ad] {
 Table sub_heading_setting[headercolor: #8e44ad] {
     id SERIAL //PRIMARY KEY NOT NULL,
     narration_setting_id INTEGER//FK
+    voice_id INTEGER
     read BOOLEAN
     pitch INTEGER
     rate INTEGER
@@ -492,7 +493,13 @@ Ref: below_title_setting.narration_setting_id > narration_setting.id
 Ref: sub_heading_setting.narration_setting_id > narration_setting.id
 Ref: pronunciation.narration_setting_id > narration_setting.id
 
-
+Ref: author_setting.voice_id > voice.id
+Ref: title_setting.voice_id > voice.id
+Ref: body_setting.voice_id > voice.id
+Ref: quote_setting.voice_id > voice.id
+Ref: block_quote_setting.voice_id > voice.id
+Ref: below_title_setting.voice_id > voice.id
+Ref: sub_heading_setting.voice_id > voice.id
 
 // PROPOSED TABLE RELATIONSHIPS FOR REMOVAL SETTINGS
 // MAYBE CONNECT TO scraping_settings INSTEAD
