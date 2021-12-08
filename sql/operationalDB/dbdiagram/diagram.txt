@@ -330,8 +330,8 @@ Table voice[headercolor: #8e44ad] {
     id SERIAL
     name TEXT
     user_facing_name TEXT
-    language TEXT
-    provider TEXT
+    language language
+    provider tts_provider
     neural BOOLEAN // or some other tts setting
 }
 
@@ -357,6 +357,12 @@ Enum replacement_intent {
   first
 }
 
+Enum tts_provider {
+  polly
+  azure
+  ibm
+  google
+}
 
 // MODIFIED rss_id
 // add customization_template_id refernce
@@ -403,13 +409,13 @@ Table omit_slice {
     narration_setting_id INTEGER //FK
 }
 
-Table replace {
+Table replacement {
     id SERIAL
     name TEXT
     regex TEXT
     marker TEXT
     replacer TEXT
-    intent ENUM // all, first
+    intent replacement_intent // all, first
     narration_setting_id INTEGER //FK
 }
 
