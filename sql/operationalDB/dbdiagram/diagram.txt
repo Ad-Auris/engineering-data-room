@@ -352,6 +352,11 @@ Enum language {
   zh
 }
 
+Enum replacement_intent {
+  all
+  first
+}
+
 
 // MODIFIED rss_id
 // add customization_template_id refernce
