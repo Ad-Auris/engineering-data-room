@@ -1,0 +1,442 @@
+//// -- LEVEL 1
+//// -- Tables and References
+
+// Creating tables
+
+Table users [headercolor: #d35400] {
+  id VARCHAR(55) [pk] // primary key PRIMARY KEY NOT NULL
+  username VARCHAR(255) // NOT NULL
+  googleId VARCHAR(255)
+  tier INT
+  organisation_id INTEGER //REFERENCES organisations(id)
+  num_ttsp INT //NOT NULL DEFAULT 0
+  date_created TIMESTAMP //NOT NULL DEFAULT CURRENT_TIMESTAMP
+  email VARCHAR(255) //NOTNULL
+  country VARCHAR(255)
+  audience_country VARCHAR(255)
+  topic VARCHAR(255)
+  demographic VARCHAR(255)
+  desire VARCHAR(255)
+  role VARCHAR(55)
+  last_signed_in TIMESTAMP //NOT NULL DEFAULT CURRENT_TIMESTAMP
+
+}
+
+Table organisations  [headercolor: #27ae60] {
+  id SERIAL [pk] // primary key
+  name VARCHAR(255) UNIQUE
+  route_identifier VARCHAR(255)
+  admin_id VARCHAR(255) //REFERENCES users(id)
+  property_id VARCHAR(255)
+  default_view_id INT
+  filter_view_id INT
+  date TIMESTAMP // NOT NULL DEFAULT CURRENT_TIMESTAMP
+  join_code VARCHAR(255)
+}
+
+
+Table widget_themes [headercolor: #3498db] {
+   id SERIAL //PRIMARY KEY NOT NULL,
+      organisation_id INTEGER //REFERENCES organisations(id)
+      color VARCHAR(10)
+      background_color VARCHAR(10)
+      language VARCHAR(7)
+      border_color VARCHAR(10)
+      border_opacity INTEGER
+      border_thickness INTEGER
+      border_radius INTEGER
+      title BOOLEAN // DEFAULT false
+      image TEXT // DEFAULT ''
+      label TEXT
+      font_family TEXT
+      font_colour TEXT
+      font_size TEXT
+      font_weight TEXT
+      logo_colour TEXT
+}
+
+
+Table rss_id [headercolor: #c0392b] {
+      id SERIAL //PRIMARY KEY NOT NULL,
+      organisation_id INTEGER //REFERENCES organisations(id),
+      name TEXT
+      rss_feed TEXT
+      website_url TEXT
+      title_voice TEXT
+      body_voice TEXT
+      customization_template_id INTEGER //REFERENCES customization_template(id),
+
+}
+
+
+Table rss_info [headercolor: #c0392b] {
+      id SERIAL //PRIMARY KEY NOT NULL,
+      tts_package_id INTEGER //REFERENCES tts_packages(id),
+      pub_sub VARCHAR(255)
+      article_guid VARCHAR(255)
+      author VARCHAR(255)
+      url TEXT
+  }
+
+
+Table tts_packages [headercolor: #16a085] {
+      id SERIAL //PRIMARY KEY NOT NULL,
+      date TIMESTAMP //NOT NULL DEFAULT CURRENT_TIMESTAMP,
+      user_id VARCHAR(255) //REFERENCES users(id),
+      organisation_id INTEGER //REFERENCES organisations(id),
+      rss_id INTEGER //REFERENCES rss_id(id),
+      title VARCHAR(255)// NOT NULL DEFAULT '',
+      route_identifier VARCHAR(255)
+      file VARCHAR(255) //NOT NULL DEFAULT '',
+      original_text TEXT //NOT NULL DEFAULT '',
+      modified_text VARCHAR(255) //NOT NULL DEFAULT '',
+      narration_type VARCHAR(255)
+      comments TEXT
+      sentiment_analysis TEXT
+      emotion_analysis TEXT
+      keywords_analysis TEXT
+      widget_image TEXT
+      footer_title TEXT
+      narration_method TEXT //DEFAULT 'Instant',
+      article_url TEXT
+      title_voice TEXT
+      music TEXT //NOT NULL DEFAULT '',
+      ct_link TEXT
+      experiment INTEGER //REFERENCES experiment(id)
+    }
+
+
+Table audio [headercolor: #16a085] {
+      id SERIAL //PRIMARY KEY NOT NULL,
+      tts_package_id INTEGER //REFERENCES tts_packages(id),
+      pitch DECIMAL //NOT NULL DEFAULT 1,
+      speed DECIMAL //NOT NULL DEFAULT 1,
+      voice_code INTEGER //NOT NULL DEFAULT 1,
+      format VARCHAR(255)
+      file TEXT
+      length DECIMAL
+      url VARCHAR(255)
+}
+
+
+Table podcasts [headercolor: #f39c12] {
+      id SERIAL //PRIMARY KEY NOT NULL,
+      organisation_id INTEGER //REFERENCES organisations(id),
+      title TEXT
+      description TEXT
+      email TEXT
+      cover_art TEXT
+      author VARCHAR(255)
+      copyright TEXT
+      language VARCHAR(55)
+      category_1 TEXT
+      category_2 TEXT
+      explicit BOOLEAN
+      site_url TEXT
+      date TIMESTAMP //NOT NULL DEFAULT CURRENT_TIMESTAMP
+}
+
+
+Table podcast_episodes [headercolor: #f39c12] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    podcast_id INTEGER //REFERENCES podcasts(id),
+    tts_package_id INTEGER //REFERENCES tts_packages(id),
+    subtitle TEXT //DEFAULT '',
+    description TEXT //DEFAULT ''
+}
+
+
+Table experiment [headercolor: #2c3e50] {
+      id SERIAL //PRIMARY KEY NOT NULL,
+      name VarChar(255)
+      date_created TIMESTAMP
+      date_ended TIMESTAMP
+      description Text
+      active BOOLEAN //DEFAULT FALSE
+}
+
+
+Table version [headercolor: #2c3e50] {
+      id SERIAL //PRIMARY KEY NOT NULL,
+      experiment_id INTEGER //REFERENCES experiment(id),
+      tts_package_id INTEGER //REFERENCES tts_packages(id),
+      is_parent BOOLEAN
+      name VarChar(255)
+      audio_url TEXT
+      description Text
+      active BOOLEAN // DEFAULT TRUE
+}
+
+
+
+Table article_metadata [headercolor: #16a085] {
+      id SERIAL //PRIMARY KEY NOT NULL,
+      publish_date TIMESTAMP
+      category TEXT
+      image_url TEXT
+      tts_package_id INTEGER //REFERENCES tts_packages(id)
+}
+
+
+Table text_classification [headercolor: #16a085] {
+      id SERIAL // PRIMARY KEY NOT NULL,
+      article_metadata_id INTEGER //REFERENCES article_metadata(id),
+      main_class TEXT //NOT NULL, 
+      subclass_1 TEXT
+      subclass_2 TEXT
+      confidence DECIMAL(3,2)
+}
+
+Table narration_stats [headercolor: #16a085] {
+        id SERIAL //PRIMARY KEY NOT NULL,
+        total_listens INTEGER //DEFAULT NULL,
+        tts_package_id INTEGER //REFERENCES tts_packages(id)
+}
+
+
+Table play_app_excluded_org {
+   id SERIAL //PRIMARY KEY NOT NULL,
+   organisation_id INTEGER // REFERENCES organisations(id)
+}
+
+
+Table play_app_excluded_ttsp {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    tts_package_id INTEGER // REFERENCES tts_packages(id)
+}
+
+// ========== === PROPOSED NEW TABLES  (CUSTOMIZATION SPRINT) =======================
+
+// Table language_customization_template [headercolor: #8e44ad] {
+//   id SERIAL [pk] //PRIMARY KEY NOT NULL,   // primary key
+//     organisation_id INTEGER //REFERENCES organisations(id),
+//     language_code varchar // - new
+//     created_at timestamp
+// }
+
+// Table rss_feed_customization_template [headercolor: #8e44ad] {
+//   id SERIAL [pk] //PRIMARY KEY NOT NULL,   // primary key
+//     organisation_id INTEGER //REFERENCES organisations(id),
+//     rss_feed varchar // - new
+//     language_code varchar // - new
+//     created_at timestamp
+// }
+
+Table customization_template [headercolor: #8e44ad] {
+    id SERIAL [pk] //PRIMARY KEY NOT NULL,   // primary key
+    organisation_id INTEGER //REFERENCES organisations(id),
+    customization_template_metadata_id INTEGER //REFERENCES customization_template_metadata(id),
+    publication_audio_branding_id INTEGER //REFERENCES publication_audio_branding(id),
+    customization_template_voices_id INTEGER //REFERENCES customization_template_voices(id),
+    ssml_breaktimes_id INTEGER //REFERENCES ssml_breaktimes(id),
+    article_narration_settings_id INTEGER //REFERENCES article_narration_settings(id),
+    scraping_settings_id INTEGER //REFERENCES scraping_settings(id),
+
+}
+
+
+Table customization_template_metadata [headercolor: #8e44ad] {
+   id SERIAL [pk] //PRIMARY KEY NOT NULL,   // primary key
+    organisation_id INTEGER //REFERENCES organisations(id),
+    rss_feed varchar // - new
+    language_code varchar // - new
+    created_at timestamp
+}
+
+Table publication_audio_branding [headercolor: #8e44ad] {
+  
+      id SERIAL //PRIMARY KEY NOT NULL,
+      organisation_id INTEGER //REFERENCES organisations(id),
+      intro_pre_recorded TEXT
+      outro_pre_recorded TEXT
+      intro_tts_text TEXT
+      outro_tts_text TEXT
+      date TIMESTAMP //NOT NULL DEFAULT CURRENT_TIMESTAMP
+}
+
+Table customization_template_voices [headercolor: #8e44ad] {
+  
+      id SERIAL //PRIMARY KEY NOT NULL,
+      customization_template_id INTEGER //REFERENCES customization_template(id),
+      title TEXT
+      heading TEXT
+      quote TEXT
+      blockQuote TEXT
+      intro TEXT
+      outro TEXT
+  
+}
+
+Table ssml_breaktimes [headercolor: #8e44ad] {
+  
+      id SERIAL //PRIMARY KEY NOT NULL,
+      customization_template_id INTEGER //REFERENCES customization_template(id),
+      title TEXT // DEFAULT  "<break time=\"500ms\" />""
+      heading TEXT // DEFAULT  "<break time=\"500ms\" />""
+      quote TEXT // DEFAULT  "<break time=\"500ms\" />""
+      paragraph TEXT // DEFAULT  "<break time=\"500ms\" />""
+      bulletPoint TEXT // DEFAULT  "<break time=\"500ms\" />""
+      intro TEXT // DEFAULT  "<break time=\"500ms\" />""
+      outro TEXT // DEFAULT  "<break time=\"500ms\" />""
+}
+
+Table article_narration_settings [headercolor: #8e44ad] {
+  
+      id SERIAL //PRIMARY KEY NOT NULL,
+      customization_template_id INTEGER //REFERENCES customization_template(id),
+      ordering ARRAY // DEFAULT ["intro", "title", "belowTitle", "author", "bodyText", "outro"] 
+      read_quote_marks BOOLEAN // DEFAULT  TRUE
+      read_title BOOLEAN // DEFAULT  TRUE
+      read_subheading BOOLEAN // DEFAULT  TRUE
+      read_author BOOLEAN // DEFAULT  TRUE
+
+}
+
+Table scraping_settings [headercolor: #8e44ad] {
+      id SERIAL //PRIMARY KEY NOT NULL,
+      customization_template_id INTEGER //REFERENCES customization_template(id),
+      scraper_api TEXT // DEFAULT "diffbot"
+     
+}
+
+
+
+
+Table customization_template_language_list {
+  id SERIAL //PRIMARY KEY NOT NULL, 
+  en INTEGER //REFERENCES customization_template(id),  DEFAULT NULL
+  en_uk INTEGER //REFERENCES customization_template(id), DEFAULT NULL
+  fr INTEGER //REFERENCES customization_template(id),  DEFAULT NULL
+  es INTEGER //REFERENCES customization_template(id),  DEFAULT NULL
+  ru INTEGER //REFERENCES customization_template(id),  DEFAULT NULL
+  cn INTEGER //REFERENCES customization_template(id), DEFAULT NULL
+  ar INTEGER //REFERENCES customization_template(id), DEFAULT NULL
+
+}
+
+
+// MODIFIED rss_id
+// add customization_template_id refernce
+
+
+// ==================   REFERENCES ======================
+
+
+// Creating references
+// You can also define relaionship separately
+// > many-to-one; < one-to-many; - one-to-one
+
+
+// ORG ID One-to-many
+Ref:  organisations.id  < widget_themes.organisation_id 
+Ref:  organisations.id  < rss_id.organisation_id 
+Ref:  organisations.id  < podcasts.organisation_id 
+Ref:  organisations.id  < users.organisation_id 
+
+// Podcasts ID One-to-many
+Ref:  podcasts.id  < podcast_episodes.id 
+
+// Experiment ID One-to-many
+Ref: experiment.id < version.id
+
+
+// play_app_excluded_org ID One-to-many
+Ref: play_app_excluded_org.id < organisations.id
+
+
+// play_app_excluded_ttsp ID One-to-many
+Ref: play_app_excluded_ttsp.id < organisations.id
+
+
+// TTSP ID Many-to-One
+Ref: tts_packages.id > users.id
+Ref: tts_packages.id > organisations.id
+Ref: tts_packages.id > rss_id.id
+
+
+// TTSP & audio One-to-one
+Ref: tts_packages.id - audio.id
+
+// TTSP & RSS One-to-one
+Ref: tts_packages.id - rss_info.id
+
+
+// TTSP & podcast_episodes One-to-one
+Ref: tts_packages.id - podcast_episodes.id
+
+
+// TTSP & experiment versions One-to-one
+Ref: tts_packages.id - version.id
+
+// TTSP & article_metadata One-to-one
+Ref: tts_packages.id - article_metadata.id
+
+// TTSP & narration_stats One-to-one
+Ref: tts_packages.id - narration_stats.id
+
+
+// article_metadata & text_classification One-to-one
+Ref: article_metadata.id - text_classification.id
+
+
+
+
+// ======= PROPOSED RELATIONSHIP REFERENCES =========
+
+// ORG ID One-to-many
+
+// Ref:  organisations.id < language_customization_template.organisation_id 
+// Ref:  organisations.id  < rss_feed_customization_template.organisation_id 
+
+Ref: organisations.id  < customization_template.organisation_id 
+
+// customization_template ID One-to-many
+Ref: customization_template.id  < customization_template_metadata.id 
+Ref: customization_template.id  < publication_audio_branding.id 
+Ref: customization_template.id  < customization_template_voices.id 
+Ref: customization_template.id  < ssml_breaktimes.id 
+Ref: customization_template.id  < article_narration_settings.id 
+Ref: customization_template.id  < scraping_settings.id 
+
+
+
+// customization_template_language_list (lang_code) One-to-many
+
+Ref: customization_template.id  < customization_template_language_list.en 
+Ref: customization_template.id  < customization_template_language_list.en_uk 
+Ref: customization_template.id  < customization_template_language_list.es 
+Ref: customization_template.id  < customization_template_language_list.fr 
+Ref: customization_template.id  < customization_template_language_list.ru 
+Ref: customization_template.id  < customization_template_language_list.cn 
+Ref: customization_template.id  < customization_template_language_list.ar 
+
+
+
+// customization_template ID One-to-many
+Ref: customization_template.id  < rss_id.id 
+
+
+
+
+
+
+
+
+
+
+//----------------------------------------------//
+
+//// -- LEVEL 2
+//// -- Adding column settings
+
+
+//----------------------------------------------//
+
+//// -- Level 3 
+//// -- Enum, Indexes
+
+// Enum for 'products' table below
+
+// Indexes: You can define a single or multi-column index 
+
+Ref: "tts_packages"."title" < "tts_packages"."rss_id"
