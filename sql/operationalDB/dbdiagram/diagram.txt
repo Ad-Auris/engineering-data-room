@@ -379,43 +379,42 @@ Table removal_config[headercolor: #8e44ad] {
     settings_name TEXT // E.G: Remove Double Author Blurb
 }
 
-Table convert_html_statement[headercolor: #8e44ad] {
+Table html_tag_replacement [headercolor: #8e44ad] {
     id SERIAL //PRIMARY KEY NOT NULL,
     narration_setting_id INTEGER //REFERENCES narration_settings_id(id),
-    removal_type TEXT // E.G:  "Remove First Instance by HTML Tag"
-    start_html_statement TEXT // E.G:  "<strong><p>"
-    end_html_statement TEXT // E.G:  "</strong></p>"
-    converted_start_html_statement TEXT // E.G:  "<em>"
-    converted_end_html_statement TEXT // E.G:  "</em>"
-    settings_name TEXT // E.G: Convert strong + p tags into italics tags
+    name TEXT // E.G: Convert strong + p tags into italics tags
+    intent replacement_intent // E.G:  "Remove First Instance by HTML Tag"
+    original_tag TEXT
+    replacement_tag TEXT
+    regex TEXT
 }
 
-Table replace_html_statements[headercolor: #8e44ad] {
+Table html_tag_removal [headercolor: #8e44ad] {
     id SERIAL //PRIMARY KEY NOT NULL,
     narration_setting_id INTEGER //REFERENCES narration_settings_id(id),
-    removal_type TEXT // E.G:  "Remove First Instance by HTML Tag"
-    start_html_statement TEXT // E.G:  "<figure>"
-    end_html_statement TEXT // E.G:  "</figure>"
-    replaced_statement TEXT // E.G:  "<em>"
-    converted_end_html_statement TEXT // E.G:  "<p>Look on screen for graphics</P"
-    settings_name TEXT // E.G: Tell listener to look on screen for media
-}
-
-Table omit_slice {
-    id SERIAL
-    marker TEXT
-    remove_below BOOLEAN
-    narration_setting_id INTEGER //FK
+    name TEXT // E.G: Tell listener to look on screen for media
+    intent replacement_intent // E.G:  "Remove First Instance by HTML Tag"
+    tag TEXT
+    regex TEXT
 }
 
 Table replacement {
     id SERIAL
+    narration_setting_id INTEGER //FK
     name TEXT
-    regex TEXT
+    intent replacement_intent // all, first
     marker TEXT
     replacer TEXT
-    intent replacement_intent // all, first
+    regex TEXT
+}
+
+Table omit_slice {
+    id SERIAL
     narration_setting_id INTEGER //FK
+    name TEXT
+    marker TEXT
+    remove_below BOOLEAN
+    regex TEXT
 }
 
 
@@ -507,7 +506,13 @@ Ref: quote_setting.narration_setting_id > narration_setting.id
 Ref: block_quote_setting.narration_setting_id > narration_setting.id
 Ref: below_title_setting.narration_setting_id > narration_setting.id
 Ref: sub_heading_setting.narration_setting_id > narration_setting.id
+
 Ref: pronunciation.narration_setting_id > narration_setting.id
+Ref: replacement.narration_setting_id > narration_setting.id
+Ref: omit_slice.narration_setting_id > narration_setting.id
+Ref: html_tag_removal.narration_setting_id > narration_setting.id
+Ref: html_tag_replacement.narration_setting_id > narration_setting.id
+
 
 Ref: author_setting.voice_id > voice.id
 Ref: title_setting.voice_id > voice.id
