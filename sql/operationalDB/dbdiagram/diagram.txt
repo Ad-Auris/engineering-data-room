@@ -209,7 +209,7 @@ Table play_app_excluded_ttsp {
 Table narration_setting[headercolor: #8e44ad] {
     id SERIAL[pk] //PRIMARY KEY NOT NULL,   // primary key
     organisation_id INTEGER //REFERENCES organisations(id),
-    language TEXT //Or maybe a FK to a language table?
+    language language
     created_at timestamp
 }
 
@@ -307,7 +307,7 @@ Table sub_heading_setting[headercolor: #8e44ad] {
 Table pronunciation[headercolor: #8e44ad] {
     id SERIAL
     narration_setting_id INTEGER//FK
-    language TEXT
+    language language
     original TEXT
     replacement TEXT
 }
