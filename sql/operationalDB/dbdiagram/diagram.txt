@@ -1,0 +1,524 @@
+//// -- LEVEL 1
+//// -- Tables and References
+
+// Creating tables
+
+Table users[headercolor: #d35400] {
+    id VARCHAR(55) //[pk] // primary key PRIMARY KEY NOT NULL
+    username VARCHAR(255) // NOT NULL
+    googleId VARCHAR(255)
+    tier INT
+    organisation_id INTEGER //REFERENCES organisations(id)
+    num_ttsp INT //NOT NULL DEFAULT 0
+    date_created TIMESTAMP //NOT NULL DEFAULT CURRENT_TIMESTAMP
+    email VARCHAR(255) //NOTNULL
+    country VARCHAR(255)
+    audience_country VARCHAR(255)
+    topic VARCHAR(255)
+    demographic VARCHAR(255)
+    desire VARCHAR(255)
+    role VARCHAR(55)
+    last_signed_in TIMESTAMP //NOT NULL DEFAULT CURRENT_TIMESTAMP
+
+}
+
+Table organisations[headercolor: #27ae60] {
+    id SERIAL[pk] // primary key
+    name VARCHAR(255) UNIQUE
+    route_identifier VARCHAR(255)
+    admin_id VARCHAR(255) //REFERENCES users(id)
+    property_id VARCHAR(255)
+    default_view_id INT
+    filter_view_id INT
+    date TIMESTAMP // NOT NULL DEFAULT CURRENT_TIMESTAMP
+    join_code VARCHAR(255)
+}
+
+
+Table widget_themes[headercolor: #3498db] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    organisation_id INTEGER //REFERENCES organisations(id)
+    color VARCHAR(10)
+    background_color VARCHAR(10)
+    language VARCHAR(7)
+    border_color VARCHAR(10)
+    border_opacity INTEGER
+    border_thickness INTEGER
+    border_radius INTEGER
+    title BOOLEAN // DEFAULT false
+    image TEXT // DEFAULT ''
+    label TEXT
+    font_family TEXT
+    font_colour TEXT
+    font_size TEXT
+    font_weight TEXT
+    logo_colour TEXT
+}
+
+
+Table rss_id[headercolor: #c0392b] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    organisation_id INTEGER //REFERENCES organisations(id),
+    name TEXT
+    rss_feed TEXT
+    website_url TEXT
+    title_voice TEXT //FK
+    body_voice TEXT
+    customization_template_id INTEGER //REFERENCES customization_template(id),
+
+}
+
+
+Table rss_info[headercolor: #c0392b] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    tts_package_id INTEGER //REFERENCES tts_packages(id),
+    pub_sub VARCHAR(255)
+    article_guid VARCHAR(255)
+    author VARCHAR(255)
+    url TEXT
+}
+
+
+Table tts_packages[headercolor: #16a085] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    date TIMESTAMP //NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    user_id VARCHAR(255) //REFERENCES users(id),
+    organisation_id INTEGER //REFERENCES organisations(id),
+    rss_id INTEGER //REFERENCES rss_id(id),
+    title VARCHAR(255)// NOT NULL DEFAULT '',
+    route_identifier VARCHAR(255)
+    file VARCHAR(255) //NOT NULL DEFAULT '',
+    original_text TEXT //NOT NULL DEFAULT '',
+    modified_text VARCHAR(255) //NOT NULL DEFAULT '',
+    narration_type VARCHAR(255)
+    comments TEXT
+    sentiment_analysis TEXT
+    emotion_analysis TEXT
+    keywords_analysis TEXT
+    widget_image TEXT
+    footer_title TEXT
+    narration_method TEXT //DEFAULT 'Instant',
+    article_url TEXT
+    title_voice TEXT
+    music TEXT //NOT NULL DEFAULT '',
+    ct_link TEXT
+    experiment INTEGER //REFERENCES experiment(id)
+}
+
+
+Table audio[headercolor: #16a085] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    tts_package_id INTEGER //REFERENCES tts_packages(id),
+    pitch DECIMAL //NOT NULL DEFAULT 1,
+    speed DECIMAL //NOT NULL DEFAULT 1,
+    voice_code INTEGER //NOT NULL DEFAULT 1,
+    format VARCHAR(255)
+    file TEXT
+    length DECIMAL
+    url VARCHAR(255)
+}
+
+
+Table podcasts[headercolor: #f39c12] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    organisation_id INTEGER //REFERENCES organisations(id),
+    title TEXT
+    description TEXT
+    email TEXT
+    cover_art TEXT
+    author VARCHAR(255)
+    copyright TEXT
+    language VARCHAR(55)
+    category_1 TEXT
+    category_2 TEXT
+    explicit BOOLEAN
+    site_url TEXT
+    date TIMESTAMP //NOT NULL DEFAULT CURRENT_TIMESTAMP
+}
+
+
+Table podcast_episodes[headercolor: #f39c12] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    podcast_id INTEGER //REFERENCES podcasts(id),
+    tts_package_id INTEGER //REFERENCES tts_packages(id),
+    subtitle TEXT //DEFAULT '',
+    description TEXT //DEFAULT ''
+}
+
+
+Table experiment[headercolor: #2c3e50] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    name VarChar(255)
+    date_created TIMESTAMP
+    date_ended TIMESTAMP
+    description Text
+    active BOOLEAN //DEFAULT FALSE
+}
+
+
+Table version[headercolor: #2c3e50] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    experiment_id INTEGER //REFERENCES experiment(id),
+    tts_package_id INTEGER //REFERENCES tts_packages(id),
+    is_parent BOOLEAN
+    name VarChar(255)
+    audio_url TEXT
+    description Text
+    active BOOLEAN // DEFAULT TRUE
+}
+
+
+
+Table article_metadata[headercolor: #16a085] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    publish_date TIMESTAMP
+    category TEXT
+    image_url TEXT
+    tts_package_id INTEGER //REFERENCES tts_packages(id)
+}
+
+
+Table text_classification[headercolor: #16a085] {
+    id SERIAL // PRIMARY KEY NOT NULL,
+    article_metadata_id INTEGER //REFERENCES article_metadata(id),
+    main_class TEXT //NOT NULL, 
+    subclass_1 TEXT
+    subclass_2 TEXT
+    confidence DECIMAL(3, 2)
+}
+
+Table narration_stats[headercolor: #16a085] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    total_listens INTEGER //DEFAULT NULL,
+    tts_package_id INTEGER //REFERENCES tts_packages(id)
+}
+
+
+Table play_app_excluded_org {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    organisation_id INTEGER // REFERENCES organisations(id)
+}
+
+
+Table play_app_excluded_ttsp {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    tts_package_id INTEGER // REFERENCES tts_packages(id)
+}
+
+
+Table narration_setting[headercolor: #8e44ad] {
+    id SERIAL[pk] //PRIMARY KEY NOT NULL,   // primary key
+    organisation_id INTEGER //REFERENCES organisations(id),
+    language TEXT //Or maybe a FK to a language table?
+    created_at timestamp
+}
+
+Table title_setting[headercolor: #8e44ad] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    narration_setting_id INTEGER//FK
+    read BOOLEAN
+    voice INTEGER //FK
+    pitch INTEGER
+    rate INTEGER
+    break_time INTEGER
+}
+
+Table quote_setting[headercolor: #8e44ad] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    narration_setting_id INTEGER//FK
+    voice INTEGER //FK
+    pitch INTEGER
+    rate INTEGER
+    break_time INTEGER
+    read_quote_marks BOOLEAN // saying the word "quote"
+}
+
+Table block_quote_setting[headercolor: #8e44ad] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    narration_setting_id INTEGER//FK
+    voice INTEGER //FK
+    pitch INTEGER
+    rate INTEGER
+    break_time INTEGER
+    read_quote_marks BOOLEAN // saying the word "quote"
+}
+
+Table author_setting[headercolor: #8e44ad] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    narration_setting_id INTEGER//FK
+    read BOOLEAN
+    voice INTEGER //FK
+    pitch INTEGER
+    rate INTEGER
+    break_time INTEGER
+}
+
+Table intro_setting[headercolor: #8e44ad] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    narration_setting_id INTEGER//FK
+    read BOOLEAN
+    pre_recorded_link TEXT
+    break_time INTEGER
+}
+
+Table outro_setting[headercolor: #8e44ad] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    narration_setting_id INTEGER//FK
+    read BOOLEAN
+    pre_recorded_link TEXT
+    break_time INTEGER
+}
+
+Table below_title_setting[headercolor: #8e44ad] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    narration_setting_id INTEGER//FK
+    read BOOLEAN
+    voice INTEGER //FK
+    pitch INTEGER
+    rate INTEGER
+    break_time INTEGER
+}
+
+Table body_setting[headercolor: #8e44ad] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    narration_setting_id INTEGER//FK
+    voice INTEGER //FK
+    pitch INTEGER
+    rate INTEGER
+    break_time INTEGER
+    paragraph_break_time INTEGER
+    bullet_point_break_time INTEGER
+    //Add sub_heading setting here too?
+}
+//Technically sub headings are part of the body text.
+Table sub_heading_setting[headercolor: #8e44ad] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    narration_setting_id INTEGER//FK
+    read BOOLEAN
+    pitch INTEGER
+    rate INTEGER
+    break_time INTEGER
+}
+
+//AKA word list, i don't think this is the same as say-as
+// say-as is for reading something as a date/number/spelled out, not for pronunciation
+//
+Table pronunciation[headercolor: #8e44ad] {
+    id SERIAL
+    narration_setting_id INTEGER//FK
+    language TEXT
+    original TEXT
+    replacement TEXT
+}
+
+Table audio_production[headercolor: #8e44ad] {
+    id SERIAL
+    narration_setting_id INTEGER//FK
+    track TEXT
+}
+
+Table advertisement[headercolor: #8e44ad] {
+    id SERIAL
+    narration_setting_id INTEGER
+    pre_roll TEXT
+    mid_roll TEXT
+    post_roll TEXT
+}
+
+Table voice[headercolor: #8e44ad] {
+    id SERIAL
+    name TEXT
+    user_facing_name TEXT
+    language TEXT
+    provider TEXT
+    neural BOOLEAN // or some other tts setting
+}
+
+Table scraping_setting[headercolor: #8e44ad] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    narration_setting_id INTEGER //REFERENCES customization_template(id),
+    scraper_api TEXT // DEFAULT "diffbot"
+}
+
+// language ENUM(en, en_uk, fr, es, ru, cn ,ar,........ )
+Table language_list[headercolor: #8e44ad] {
+    id SERIAL //PRIMARY KEY NOT NULL, 
+}
+
+
+// MODIFIED rss_id
+// add customization_template_id refernce
+
+// ================  TABLES FOR: REMOVAL TOOL SETTINGS  =================
+
+
+// Most likley not for this table (experimenting)
+Table removal_config[headercolor: #8e44ad] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    narration_setting_id INTEGER //REFERENCES narration_settings_id(id),
+    removal_type TEXT // E.G:  "Remove First Instance by HTML Tag"
+    start_html_statement TEXT // E.G:  "<strong>"
+    end_html_tag TEXT // E.G:  "</strong>"
+    settings_name TEXT // E.G: Remove Double Author Blurb
+}
+
+Table convert_html_statement[headercolor: #8e44ad] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    narration_setting_id INTEGER //REFERENCES narration_settings_id(id),
+    removal_type TEXT // E.G:  "Remove First Instance by HTML Tag"
+    start_html_statement TEXT // E.G:  "<strong><p>"
+    end_html_statement TEXT // E.G:  "</strong></p>"
+    converted_start_html_statement TEXT // E.G:  "<em>"
+    converted_end_html_statement TEXT // E.G:  "</em>"
+    settings_name TEXT // E.G: Convert strong + p tags into italics tags
+}
+
+Table replace_html_statements[headercolor: #8e44ad] {
+    id SERIAL //PRIMARY KEY NOT NULL,
+    narration_setting_id INTEGER //REFERENCES narration_settings_id(id),
+    removal_type TEXT // E.G:  "Remove First Instance by HTML Tag"
+    start_html_statement TEXT // E.G:  "<figure>"
+    end_html_statement TEXT // E.G:  "</figure>"
+    replaced_statement TEXT // E.G:  "<em>"
+    converted_end_html_statement TEXT // E.G:  "<p>Look on screen for graphics</P"
+    settings_name TEXT // E.G: Tell listener to look on screen for media
+}
+
+Table omit_slice {
+    id SERIAL
+    marker TEXT
+    remove_below BOOLEAN
+    narration_setting_id INTEGER //FK
+}
+
+Table replace {
+    id SERIAL
+    name TEXT
+    regex TEXT
+    marker TEXT
+    replacer TEXT
+    intent ENUM // all, first
+    narration_setting_id INTEGER //FK
+}
+
+
+// ==================   REFERENCES ======================
+
+
+// Creating references
+// You can also define relaionship separately
+// > many-to-one; < one-to-many; - one-to-one
+
+
+// ORG ID One-to-many
+Ref: organisations.id < widget_themes.organisation_id
+Ref: organisations.id < rss_id.organisation_id
+Ref: organisations.id < podcasts.organisation_id
+Ref: organisations.id < users.organisation_id
+
+// Podcasts ID One-to-many
+Ref: podcasts.id < podcast_episodes.id
+
+// Experiment ID One-to-many
+Ref: experiment.id < version.id
+
+
+// play_app_excluded_org ID One-to-many
+Ref: play_app_excluded_org.id < organisations.id
+
+
+// play_app_excluded_ttsp ID One-to-many
+Ref: play_app_excluded_ttsp.id < tts_packages.id
+
+
+// TTSP ID Many-to-One
+Ref: tts_packages.id > users.id
+Ref: tts_packages.id > organisations.id
+Ref: tts_packages.id > rss_id.id
+
+
+// TTSP & audio One-to-one
+Ref: tts_packages.id - audio.id
+
+// TTSP & RSS One-to-one
+Ref: tts_packages.id - rss_info.id
+
+
+// TTSP & podcast_episodes One-to-one
+Ref: tts_packages.id - podcast_episodes.id
+
+
+// TTSP & experiment versions One-to-one
+Ref: tts_packages.id - version.id
+
+// TTSP & article_metadata One-to-one
+Ref: tts_packages.id - article_metadata.id
+
+// TTSP & narration_stats One-to-one
+Ref: tts_packages.id - narration_stats.id
+
+
+// article_metadata & text_classification One-to-one
+Ref: article_metadata.id - text_classification.id
+
+
+
+
+// ======= PROPOSED RELATIONSHIP REFERENCES =========
+
+// ORG ID One-to-many
+
+// Ref:  organisations.id < language_customization_template.organisation_id 
+// Ref:  organisations.id  < rss_feed_customization_template.organisation_id 
+
+Ref: organisations.id < narration_setting.organisation_id
+
+// customization_template ID One-to-many
+Ref: narration_setting.id < scraping_setting.id
+
+
+// customization_template ID One-to-many
+
+
+
+Ref: intro_setting.narration_setting_id > narration_setting.id
+Ref: outro_setting.narration_setting_id > narration_setting.id
+Ref: author_setting.narration_setting_id > narration_setting.id
+Ref: title_setting.narration_setting_id > narration_setting.id
+Ref: body_setting.narration_setting_id > narration_setting.id
+Ref: quote_setting.narration_setting_id > narration_setting.id
+Ref: block_quote_setting.narration_setting_id > narration_setting.id
+Ref: below_title_setting.narration_setting_id > narration_setting.id
+Ref: sub_heading_setting.narration_setting_id > narration_setting.id
+Ref: pronunciation.narration_setting_id > narration_setting.id
+
+
+
+// PROPOSED TABLE RELATIONSHIPS FOR REMOVAL SETTINGS
+// MAYBE CONNECT TO scraping_settings INSTEAD
+
+
+
+
+//----------------------------------------------//
+
+//// -- LEVEL 2
+//// -- Adding column settings
+
+
+//----------------------------------------------//
+
+//// -- Level 3 
+//// -- Enum, Indexes
+
+// Enum for 'products' table below
+
+// Indexes: You can define a single or multi-column index 
+
+Ref: "tts_packages"."title" < "tts_packages"."rss_id"
+
+Ref: "audio_production"."narration_setting_id" < "narration_setting"."id"
+
+Ref: "advertisement"."narration_setting_id" < "narration_setting"."id"
+
+Ref: "advertisement"."id" < "advertisement"."narration_setting_id"

@@ -55,3 +55,17 @@ const publication_text_ingestion_settings = {
 const wordlist = {
   id: "<INT>", // SERIAL PRIMARY KEY NOT NULL, - new
 };
+
+const quoteSettings = {
+  voice: "",
+  prosody: "",
+  ssml: "", 
+  break_time: ""
+}
+
+const titleSettings = {
+  voice: "",
+  prosody: "",
+  ssml: "",
+  break_time: ""
+}
