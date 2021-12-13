@@ -332,6 +332,7 @@ Table voice[headercolor: #8e44ad] {
     language language
     provider tts_provider
     neural BOOLEAN // or some other tts setting
+    gender TEXT
 }
 
 Table scraping_setting[headercolor: #8e44ad] {
