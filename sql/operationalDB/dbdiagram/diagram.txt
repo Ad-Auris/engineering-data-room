@@ -377,15 +377,7 @@ Table html_tag_replacement [headercolor: #8e44ad] {
     intent replacement_intent // E.G:  "Remove First Instance by HTML Tag"
     original_tag TEXT
     replacement_tag TEXT
-    regex TEXT
-}
-
-Table html_tag_removal [headercolor: #8e44ad] {
-    id SERIAL //PRIMARY KEY NOT NULL,
-    narration_setting_id INTEGER //REFERENCES narration_settings_id(id),
-    name TEXT // E.G: Tell listener to look on screen for media
-    intent replacement_intent // E.G:  "Remove First Instance by HTML Tag"
-    tag TEXT
+    case_sensitive BOOLEAN DEFAULT true
     regex TEXT
 }
 
@@ -396,6 +388,7 @@ Table replacement {
     intent replacement_intent // all, first
     marker TEXT
     replacer TEXT
+    case_sensitive BOOLEAN DEFAULT true
     regex TEXT
 }
 
@@ -405,6 +398,7 @@ Table omit_slice {
     name TEXT
     marker TEXT
     remove_below BOOLEAN
+    case_sensitive BOOLEAN DEFAULT true
     regex TEXT
 }
 
