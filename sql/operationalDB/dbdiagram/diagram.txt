@@ -320,10 +320,12 @@ Table audio_production[headercolor: #8e44ad] {
 Table advertisement[headercolor: #8e44ad] {
     id SERIAL
     narration_setting_id INTEGER
-    pre_roll TEXT
-    mid_roll TEXT
-    post_roll TEXT
+    location ad_location
+    audio_source TEXT
+    companion_ad_text TEXT
+    companion_url TEXT
 }
+
 
 Table voice[headercolor: #8e44ad] {
     id SERIAL
@@ -364,6 +366,12 @@ Enum tts_provider {
   google
 }
 
+Enum ad_location {
+    pre
+    mid
+    post
+}
+
 // MODIFIED rss_id
 // add customization_template_id refernce
 
@@ -377,7 +385,7 @@ Table html_tag_replacement [headercolor: #8e44ad] {
     intent replacement_intent // E.G:  "Remove First Instance by HTML Tag"
     original_tag TEXT
     replacement_tag TEXT
-    case_sensitive BOOLEAN DEFAULT true
+    case_sensitive BOOLEAN //DEFAULT true
     regex TEXT
 }
 
@@ -388,7 +396,7 @@ Table replacement {
     intent replacement_intent // all, first
     marker TEXT
     replacer TEXT
-    case_sensitive BOOLEAN DEFAULT true
+    case_sensitive BOOLEAN //DEFAULT true
     regex TEXT
 }
 
@@ -398,7 +406,7 @@ Table omit_slice {
     name TEXT
     marker TEXT
     remove_below BOOLEAN
-    case_sensitive BOOLEAN DEFAULT true
+    case_sensitive BOOLEAN //DEFAULT true
     regex TEXT
 }
 
