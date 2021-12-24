@@ -211,6 +211,7 @@ Table narration_setting[headercolor: #8e44ad] {
     organisation_id INTEGER //REFERENCES organisations(id),
     language language
     date_created timestamp
+    UNIQUE (language, organisation_id)
 }
 
 Table title_setting[headercolor: #8e44ad] {
@@ -357,6 +358,7 @@ Enum language {
 Enum replacement_intent {
   all
   first
+  last
 }
 
 Enum tts_provider {
