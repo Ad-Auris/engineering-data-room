@@ -146,11 +146,12 @@ Segment - Customer Data Platform (CDP) (Not active yet)
 ```
 
 
-1. [SQL Wireframe](https://dbdiagram.io/d/61abf3a98c901501c0e0c1b6)
+1. [SQL Schema](https://dbdiagram.io/d/61abf3a98c901501c0e0c1b6) (🔑 Key Schema)
 (password is adauris2021)
 2. [MongoDB Wireframe]()
-
-
+3. [Firestore]()
+4. [Segment]()
+5. [Data Tracking Sheet]() (🔑 Key Schema)
 
 # Architecture
 
@@ -162,8 +163,8 @@ Ad Auris uses a distributed & serverless microservices architecture. Many servic
 (Additional Updates coming)
 
 ## Architecture Schemas
-1. [Business Logic Layer](https://lucid.app/lucidchart/c02d5275-3b4b-433f-8a56-4953ed853eb6/edit?invitationId=inv_a6984e61-6037-4d75-966f-dd44a65dc429) 
-2. [Ad Auris Dashboard and Narration pipeline Wireframe](https://drive.google.com/file/d/1EZ35RTLapdmEqMOrmhdoqhGhcaB2Gr08/view)
+1. [Business Logic Layer](https://lucid.app/lucidchart/c02d5275-3b4b-433f-8a56-4953ed853eb6/edit?invitationId=inv_a6984e61-6037-4d75-966f-dd44a65dc429)  (🔑 Key Schema)
+2. [Microservices Layer](https://drive.google.com/file/d/1EZ35RTLapdmEqMOrmhdoqhGhcaB2Gr08/view) (🔑 Key Schema)
 3. [Play App Wireframe](https://drive.google.com/file/d/1pq35gssmAKxOEjs4io8yMaod1VMTqNtx/view)
 4. [Global Company (and legacy) Wireframe](https://drive.google.com/file/d/1Ao5byYF1vXzCo4H39BsabsvqkPP-aTw5/view)
 5. [Pipeline Revamp Wireframe](https://drive.google.com/file/d/18Z84V9w_9jLhFMcV-GS0Aep70fYyNxit/view)
@@ -174,4 +175,8 @@ Ad Auris uses a distributed & serverless microservices architecture. Many servic
 
 1. [Narration widget & Play App Data collection](https://adauris.atlassian.net/wiki/spaces/AA/pages/244121601)
 
+
+## Documentation 
+
+1. [Internal API](https://adauris.atlassian.net/wiki/spaces/AA/pages/253329409/Narration+Settings+API)
 
