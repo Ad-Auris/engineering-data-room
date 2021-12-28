@@ -3,7 +3,7 @@
 
 ### Purpose
 
-The Purpose of this repo is for it to act as a central source of truth for schemas, best practices, and other ad auris engineering relevant documentation.
+The Purpose of this repo is for it to act as a central source of truth for schemas, best practices, and other ad auris engineering relevant documentation. This documentation is to be use by newcomers in onboarding or refreshers for existing members as these are a growing and dynamic set of documents.
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#)
 
@@ -15,6 +15,7 @@ The Purpose of this repo is for it to act as a central source of truth for schem
     * [Process Priorities](#process-priorities)
     * [Architectural Priorities](#architectural-priorities)
     * [Coding Guidelines](#coding-guidelines)
+    * [Key Protocols](#key-protocols)
 * [➤ Apps](#apps)
     *[App List](app-list)
 * [➤ Architecture](#architecture)
@@ -32,6 +33,7 @@ The Purpose of this repo is for it to act as a central source of truth for schem
 * [Architectural Priorities](#architectural-priorities)
 * [System Architecture](#system-architecture)
 * [Coding Guidelines](#coding-guidelines)
+* [Key Protocols](#key-protocols)
 
 
 
@@ -122,6 +124,65 @@ The purpose of the pull request process is to ensure code and product quality. T
 1. At this point, any other developer that sees the PR should do the review, assigning themself with the reviewer field, removing the "ready for review" label, and labeling it with "reviewing". The reviewer reviews the code and performs QA, repeating the steps provided in the PR description *and* thinking critically about what additional QA steps may have been missed by the assignee.
 1. Now the usual back and forth commences between the assignee and the reviewer consisting of questions, comments, ideas, requests, suggestions and changes. NB: Reviews are about the code, not about the people, as an assignee, try to remain objective and not take anything from the reviewer personally, and as a reviewer, be kind and stay focused on the code. 
 1. Once the code is in a place that both the assignee and reviewer are happy with it, it is the assignees responsibility to merge the PR and get the code deployed into production. Any special notes on deployment steps or dependencies should be included in the PR for the reviewer.
+
+
+## Key Protocols 
+
+
+### Self QA
+👨‍🏭 Self QA Protocol
+
+This section applies to *when you work with enterprise customizations or any services that directly affects text ingestion or audio output.*
+
+This section is intended to communicate the self-QA process client custom requests and to reduce narration related bugs.
+
+These tests are E2E in nature and will require some manual testing but regression tests are highly encouraged as bugs or idiosyncracies are found.
+
+* Initial Filtering for issues as a foundation
+    * After receiving a Jira card, first and foremost it’s important we can communicate any expected (or suspected) issues and/or high effort/time required for the request. 
+        * If issue suspected, etc., communicate that on the Jira card and to the relevant stakeholder
+* Using multiple articles to test with
+    * After coding up required specs, test with multiple articles (a large enough sample size at your discretion).
+        *  While we have encountered edge cases on many of the requests, at the very least we both record what those are, and communicate it on the Jira card and to relevant stakeholder.
+        * Record the # of articles tested as well as the associated URLS
+* Listen to the article and follow along the article
+    * Ensure the audio matches both the article and the required specs.
+* E2E tests (Emulating User Behavior)
+    * it’s important that we test beyond postman and instant, we should be testing with the aforementioned and as well as RSS of course. 
+    * Record any abnormal behavior on Jira card.
+* Repairing Narrations
+    *  Ensure that the affected narration(s) are re-narrated if there was an issue due to a bug. Refresh the a given publication’s narrations by at least 24 hours.
+    * We have a script in RSS service or use the Internal tool to refresh a given publication's narrations.
+* Confirmation of completion
+    * when pushed (or card moved to done) communicate final QA results and readiness to relevant stakeholder.
+
+#### The Protocols at a High Level
+
+* Communicate effort/time of a customization
+
+* Use multiple articles to test with
+
+* listen the narration and follow along article
+
+* E2E tests (Emulating User behavior)
+
+* Repairing narrations (re-narrate)
+
+* Confirm completion
+
+## Pushing Code Protocols 
+At a high level
+
+* No ad-hoc pushing straight to master/main (usually locked)
+
+*  Merges done develop/staging branch
+
+* Some Tests must be written for the new code unless otherwise specified
+
+* CodeShip will block pushes to master/main that have tests that fail 
+
+* Pushes to master/main requires PR by someone on the team.
+
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
@@ -269,7 +330,7 @@ As we are a fast moving team we use set of tools that enables to communicate syn
 ### Async Tools
 * Jira (For Ticketing tasks)
 - [Confluence](https://adauris.atlassian.net/wiki/spaces/AA/overview?homepageId=196610) + [Notion](https://www.notion.so/adauris/Engineering-2058fbe4a0b143a4bb8316d7192ea679) (Documentation and Company/Product Sheets)
-- [https://dbdiagram.io](https://dbdiagram.io/) (SQL Schmea Designing)
+- [dbdiagram](https://dbdiagram.io/) (SQL Schmea Designing)
 * [draw.io](http://draw.io)  ||  [Lucid](https://lucid.app/)  (for database schema and architecture designing)
 
 
@@ -285,6 +346,16 @@ As we are a fast moving team we use set of tools that enables to communicate syn
 
 
 # Environment Setup
+
+Currently, each service has it's own environment set up but there are a few major environment set up patterns. These environment patterns are:
+
+1. Localized Node JS (or with React)
+2. Dockerized Node or Python Applications
+3. Herokuized Applications 
+
+Other than heroku, our serverless microservices generally sit atop GCP Cloud Functions & Cloud Run where we iteract with development and production environments via a cloubuild.yaml and/or a Dockerfile.
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
 # Glossary
 
