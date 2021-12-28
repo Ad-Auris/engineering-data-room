@@ -7,10 +7,24 @@ The Purpose of this repo is for it to act as a central source of truth for schem
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#)
 
+## ➤ Table of Contents
+
+* [➤ Engineering Best Practices](#engineering-best-practices)
+    * [Technical Values](#technical-values)
+    * [Technical Priorities](#technical-priorities)
+    * [Process Priorities](#process-priorities)
+    * [Architectural Priorities](#architectural-priorities)
+    * [Coding Guidelines](#coding-guidelines)
+* [➤ Apps](#apps)
+    *[App List](app-list)
+* [➤ Architecture](#architecture)
+    * [Architecture Schemas](#architecture-schemas)
+* [➤ Architecture](#architecture)
+    * [Architecture Schemas](#architecture-schemas)
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
 # Engineering Best Practices
-
-Information for new Ad Auris developers:
 
 * [Technical Values](#technical-values)
 * [Technical Priorities](#technical-priorities)
@@ -109,49 +123,23 @@ The purpose of the pull request process is to ensure code and product quality. T
 1. Now the usual back and forth commences between the assignee and the reviewer consisting of questions, comments, ideas, requests, suggestions and changes. NB: Reviews are about the code, not about the people, as an assignee, try to remain objective and not take anything from the reviewer personally, and as a reviewer, be kind and stay focused on the code. 
 1. Once the code is in a place that both the assignee and reviewer are happy with it, it is the assignees responsibility to merge the PR and get the code deployed into production. Any special notes on deployment steps or dependencies should be included in the PR for the reviewer.
 
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
-
-## Apps
+# Apps
 (Client or Sales Facing)
 
-```bash
-Dashboard 
+## App List
+* [Dashboard](https://dashboard.ad-auris.com) 
 
-Narration Widget
+* [Narration Widget](https://narrations.ad-auris.com/widget/the-conversation-canada/i’m-a-pediatric-brain-surgeon-and-i’m-concerned-about-the-impact-of-delayed-diagnoses-on-my-patients-due-to-covid-19)
 
-Ad Auris Play
+* [Ad Auris Play](https://play.ad-auris.com)
 
-Internal Tool
-
-Customization Tool
-
-```
+* [Internal + Customization Tool](https://ad-auris-internal-tool.herokuapp.com)
 
 
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
-## Database Schemas 
-
-
-
-### Databases
-
-```python
-SQL - Operational DB (🔑 key DB)
-
-Mongo - Events Database (🔑 key DB)
-
-Firestore - Stripe and Admin Database
-
-Segment - Customer Data Platform (CDP) (Not active yet)
-```
-
-
-1. [SQL Schema](https://dbdiagram.io/d/61abf3a98c901501c0e0c1b6) (🔑 Key Schema)
-(password is adauris2021)
-2. [MongoDB Wireframe]()
-3. [Firestore]()
-4. [Segment]()
-5. [Data Tracking Sheet]() (🔑 Key Schema)
 
 # Architecture
 
@@ -170,18 +158,149 @@ Ad Auris uses a distributed & serverless microservices architecture. Many servic
 5. [Pipeline Revamp Wireframe](https://drive.google.com/file/d/18Z84V9w_9jLhFMcV-GS0Aep70fYyNxit/view)
 
 
-## Tools 
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
+
+
+
+# Databases
+
+
+## Databases List
+
+```python
+SQL - Operational DB (🔑 key DB)
+
+Mongo - Events Database (🔑 key DB)
+
+Firestore - Stripe and Admin Database
+
+Segment - Customer Data Platform (CDP) (Not active yet)
+```
+
+## Database Schemas
+
+1. [SQL Schema](https://dbdiagram.io/d/61abf3a98c901501c0e0c1b6) (🔑 Key Schema)
+(password is adauris2021)
+2. [MongoDB Wireframe]()
+3. [Firestore]()
+4. [Segment]()
+5. [Data Tracking Sheet]() (🔑 Key Schema)
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
+
+# Data Culture and Best Practices 
+
+## Data Governance 
+
+
+### What is Data Governance? 
+At its core, Data Governance is a schema or robust set of instructions for capturing high-quality data and ensuring standards are maintained across the collection and the cleaning of data.
+
+To succeed with data governance, teams must ensure data across all your business units and products stay clean and consistent.
+
+A properly executed Data Governance strategy prevents the inconsistent and unactionable data issues we talked about in previous lessons!
+
+
+
+> Three core aspects: Quality, Access, and Data Control.
+
+#### Quality
+
+Establish and enforce standards (such as naming conventions) for all incoming data.  Do this by creating a Tracking Plan, sharing it with other teams, and getting buy-in for it from around your organization.
+
+#### Access
+
+Limit who can modify your data (for example, a member of your team might only need read-only access to your data).
+
+#### Data Control 
+
+Map out which data goes to which downstream tools, to prevent any duplication or data clutter.
+
+ 
+
+### Data Wheel of Death 
+
+With one or more of these facets missing, a company faces something called the Data Wheel of Death. While companies of all types face this, startups must pay special care as they build their data from the ground up and it can result in delayed projects, bad business and product decisions, and once the wheel gains enough inertia, it can become very difficult to spin out of, which ultimately leads to death (death of data or death of features/product) 
+
+
+ 
+![Data Wheel of Death](https://storage.googleapis.com/ad-auris-django-bucket/schmea_pics/Screenshot%20(529).png)
+
+#### Examples where Ad Auris faces aspects of this:
+
+* Due to no schema standards or restrictions in Mongo, we have a lot of unusable documents
+
+* Due to ill-configured implementation on narration creation date collection, that data is deeply flawed (represents attempts of creation no true success) that it’s become totally unusable on Mongo side.
+
+* The IsReturned data point in Mongo is quite off and there are 10s of thousands of documents with this deeply flawed data point
+
+* One dev did not push the charCounter data collection metric causing a no data scenario in the ttsCharDB, no data governance structure meant this slipped right past us as no clear protocol of tracking.
+
+* The inconsistent naming convention among SQL, Mongo, Firestore, and GA makes it a very difficult task of creating true user data personas (pub user and end listener) and the ability to connect data across the different databases. Even with Segment, without unified naming conventions and standards, nothing can save us here depending on severity. 
+
+* On the business side, without a lack of clear business use cases, or data points tied to OKRs, the wrong or incomplete data is collected sometimes as well.
+
+
+## Current Data Collection  
+1. [Narration widget & Play App Data collection](https://adauris.atlassian.net/wiki/spaces/AA/pages/244121601)
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
+
+
+# Tools
 
 <h3 align="left">Languages and Tools:</h3>
 <p align="left"> <a href="https://babeljs.io/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/babeljs/babeljs-icon.svg" alt="babel" width="40" height="40"/> </a> <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" alt="bash" width="40" height="40"/> </a> <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/> </a> <a href="https://canvasjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/Hardik0307/Hardik0307/master/assets/canvasjs-charts.svg" alt="canvasjs" width="40" height="40"/> </a> <a href="https://www.chartjs.org" target="_blank" rel="noreferrer"> <img src="https://www.chartjs.org/media/logo-title.svg" alt="chartjs" width="40" height="40"/> </a> <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/django/django-original.svg" alt="django" width="40" height="40"/> </a> <a href="https://www.docker.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> </a> <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a> <a href="https://www.figma.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="40"/> </a> <a href="https://firebase.google.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a> <a href="https://flask.palletsprojects.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg" alt="flask" width="40" height="40"/> </a> <a href="https://www.framer.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/framer/framer-icon.svg" alt="framer" width="40" height="40"/> </a> <a href="https://cloud.google.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="gcp" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://heroku.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://jestjs.io" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/jestjsio/jestjsio-icon.svg" alt="jest" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://mochajs.org" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/mochajs/mochajs-icon.svg" alt="mocha" width="40" height="40"/> </a> <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width="40" height="40"/> </a> <a href="https://nextjs.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="nextjs" width="40" height="40"/> </a> <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a> <a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/> </a> <a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> <a href="https://redux.js.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" alt="redux" width="40" height="40"/> </a> <a href="https://sass-lang.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg" alt="sass" width="40" height="40"/> </a> <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind" width="40" height="40"/> </a> <a href="https://webpack.js.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/d00d0969292a6569d45b06d3f350f463a0107b0d/icons/webpack/webpack-original-wordmark.svg" alt="webpack" width="40" height="40"/> </a> </p>
 
 
-## Data
+## Internal Ops
 
-1. [Narration widget & Play App Data collection](https://adauris.atlassian.net/wiki/spaces/AA/pages/244121601)
+As we are a fast moving team we use set of tools that enables to communicate sync and async where appropiate.
+
+### Sync Tools
+
+* Slack (Direct Comms)
+    *   If Slack goes down we'll hop over to Discord
+* Google Meets + Zoom (Zooms are for all hands usually)
+
+
+### Async Tools
+* Jira (For Ticketing tasks)
+- [Confluence](https://adauris.atlassian.net/wiki/spaces/AA/overview?homepageId=196610) + [Notion](https://www.notion.so/adauris/Engineering-2058fbe4a0b143a4bb8316d7192ea679) (Documentation and Company/Product Sheets)
+- [https://dbdiagram.io](https://dbdiagram.io/) (SQL Schmea Designing)
+* [draw.io](http://draw.io)  ||  [Lucid](https://lucid.app/)  (for database schema and architecture designing)
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
 
 ## Documentation 
 
 1. [Internal API](https://adauris.atlassian.net/wiki/spaces/AA/pages/253329409/Narration+Settings+API)
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
+
+
+# Environment Setup
+
+# Glossary
+
+A Log of commonly used terms and acronyms at Ad Auris
+
+* CT = Customization Template
+* Sprint = Focused Build Period
+* GAM = Google Ad Manager 
+* PR = Pull Request
+* C-Suite = executive team 
+* SRP = Single Responsbility Principle
+* DRY = Don't Repeat Yourself 
+* end users = listeners, indirect users who listent to our produced audio
+* users = the actual direct users such as publications and journalists
+* business requirements sheet = the document which the product and technical specifications are developed from
+* spec sheet = technical specification doc
+* OKRs = Objectives and Key Results
+* KPIs = Key Performance Indicators
 
