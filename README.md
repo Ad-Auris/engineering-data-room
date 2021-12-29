@@ -22,13 +22,14 @@ The Purpose of this repo is for it to act as a central source of truth for schem
     * [Architecture Schemas](#architecture-schemas)
 * [➤ Databases](#Databases)
     * [Databases List](#database-list)
-    *[Database Schemas](#database-schemas)
+    * [Database Schemas](#database-schemas)
 * [➤ Data Culture and Best Practices](#data-culture-and-best-practices)
     * [Data Governance](#data-governance)
     * [Data Wheel of Death](#data-wheel-of-death)
     * [Current Data Collection](#current-data-collection)
 * [➤ Tools](#tools)
     * [Languages and Tools](#languages-and-tools)
+    * [Communication - Norms and Conventions](#communication-norms-and-conventions)
     * [Internal Ops Tools](#internal-ops-tools)
         * [sync-tools](#sync-tools)
         * [async-tools](#async-tools)
@@ -341,6 +342,17 @@ With one or more of these facets missing, a company faces something called the D
 ## Internal Ops Tools
 
 As we are a fast moving team we use set of tools that enables to communicate sync and async where appropiate.
+
+#### Communication - Norms and Conventions
+
+
+- We have a very responsive team and have various lines of communication.
+- Overall, a healthy combination of asynchronous and direct communication
+- Slack is our primary source of P2P comms and everyone can expect a pretty fast and meaningful response from anyone on the team.
+- Asynchronously, we communicate via Confluence docs, Jira Tickets (comments), PRs, and API interfaces.
+- We have engineering daily scrums
+- Everyone occasionally puts together a presentation and teaches the team something or present something relevant to the current build
+- Optional 1 - 2 days a week we'll work together in person at WeWork
 
 ### Sync Tools
 
