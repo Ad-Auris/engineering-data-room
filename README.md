@@ -27,6 +27,9 @@ The Purpose of this repo is for it to act as a central source of truth for schem
     * [Data Governance](#data-governance)
     * [Data Wheel of Death](#data-wheel-of-death)
     * [Current Data Collection](#current-data-collection)
+* [➤ Agile Methodology](#agile-methodology)
+    * [Sprints](#sprints)
+    * [Agile Development](#agile-development)
 * [➤ Tools](#tools)
     * [Languages and Tools](#languages-and-tools)
     * [Communication - Norms and Conventions](#communication-norms-and-conventions)
@@ -328,6 +331,62 @@ With one or more of these facets missing, a company faces something called the D
 
 ## Current Data Collection  
 1. [Narration widget & Play App Data collection](https://adauris.atlassian.net/wiki/spaces/AA/pages/244121601)
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
+
+# Agile Methodology
+
+At Ad Auris, we adopt the best practices of agile methodology to develop and iterate on our product. 
+
+Generally, this is a multi stage process that requires multiple stakeholders at one point or another, be it tech, product, design, and data.
+
+Sprints are a staple of development, and our unifiying work stream.
+
+# Sprints
+
+![Sprint Framework](https://storage.googleapis.com/ad-auris-django-bucket/media/sprint-review-vs-sprint-retrospective.png)
+
+* Research 
+    * This can be from product,  tech, sales, etc. where we discover areas of opportunity for growth, addressing user pain points, or improving our software.
+* Ideation & Prioritization
+     * Before a sprint can start there is an ideation and prioriization phase where we ensure this endeavor will bring us closer to 1 or more of our 3 mission critical objectives. Those being: 
+    1.  **Most Engaging Audio**
+    2. **Furthest Distribution**
+    3. **Ease of Integration**
+* Product and Business Requirement scoping
+    * This is where the business side sets the overall scoping, and the problems we are to solve without biasing on implementation as much as possible
+* Initial Technical Specification Scoping
+    * A foundational layer for scoping the specs, solutions, pathways, etc are developed.
+* Engineering Team Brainstorm
+    * Eng then brainstorms and iterates on the inital tech scoping to find the most optimal path for success given the business and technical constraints/requirements.
+* Final Tech Spec Sheet is written up
+* Breakdown of Task
+    * We as a team parse through the spec sheet and break down tasks on an aggregate and indiviual level.
+    * *Tickets issued on Jira (Epics, stories, tasks)*
+* Estimation of Development
+    * Once tasks are set we as a team and individually we scope and set estimation for deliverables.
+* Hit the ground
+    * This when the coding actually begins and the development period is set
+* Feedback Loop
+    * During the sprint it's key we get feedback on what we're building.
+        * We'll give half developed demos to product for their feedback
+        * Feedback on the code itself (via PRs or informal dicussions)
+        * Challenge assumptions and micro-pivot on implementation if a new and better pathway is found 
+* QA & Testing
+    * We'll self-Quality Assure our own tasks as we go but the team will also be providing peer QA where necessary.
+    * We ensure we try to follow some form of testing framework, generally TDD but read [Engineering Best Practices](#engineering-best-practices) on more on this.
+* Final Merge to production
+* Product Develivered
+* Sprint Review
+    * Here we discover what went well, what needs improvement, and iterate on the process all together. Each sprint is different as we improve.
+    
+
+# Agile Development
+
+![Agile Development](https://storage.googleapis.com/ad-auris-django-bucket/media/Agile-Methodology.png)
+
+> As you can see with the agile development framework, it cyclically flows in line with the sprint framework. Infact, one can argue that sprints are really developed around its heart which is agile development.  
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
