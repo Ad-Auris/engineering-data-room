@@ -1,4 +1,7 @@
-# Engineering Data Room
+<h1 align="center">Hi! <img src="https://media.giphy.com/media/hvRJCLFzcasrR4ia7z/giphy.gif" width="30px">, Welcome to Ad Auris's Engineering Data Room</h1>
+<h3 align="center"></h3>
+
+
 ![This is an image](https://images.unsplash.com/photo-1566837945700-30057527ade0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fGNvZGV8ZW58MHx8MHx8&auto=format&fit=crop&w=1000&q=60)
 
 ### Purpose
@@ -36,7 +39,7 @@ The Purpose of this repo is for it to act as a central source of truth for schem
     * [Internal Ops Tools](#internal-ops-tools)
         * [sync-tools](#sync-tools)
         * [async-tools](#async-tools)
-* [Environment Setup](#environment-setup)
+* [➤ Environment Setup](#environment-setup)
     * [Summary](#summary)
 * [➤ Resources](#Resources)
     * [Books](#books)
