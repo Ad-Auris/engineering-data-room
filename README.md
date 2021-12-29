@@ -17,11 +17,33 @@ The Purpose of this repo is for it to act as a central source of truth for schem
     * [Coding Guidelines](#coding-guidelines)
     * [Key Protocols](#key-protocols)
 * [➤ Apps](#apps)
-    *[App List](app-list)
+    * [App List](app-list)
 * [➤ Architecture](#architecture)
     * [Architecture Schemas](#architecture-schemas)
-* [➤ Architecture](#architecture)
-    * [Architecture Schemas](#architecture-schemas)
+* [➤ Databases](#Databases)
+    * [Databases List](#database-list)
+    *[Database Schemas](#database-schemas)
+* [➤ Data Culture and Best Practices](#data-culture-and-best-practices)
+    * [Data Governance](#data-governance)
+    * [Data Wheel of Death](#data-wheel-of-death)
+    * [Current Data Collection](#current-data-collection)
+* [➤ Tools](#tools)
+    * [Languages and Tools](#languages-and-tools)
+    * [Internal Ops Tools](#internal-ops-tools)
+        * [sync-tools](#sync-tools)
+        * [async-tools](#async-tools)
+* [Environment Setup](#environment-setup)
+    * [Summary](#summary)
+* [➤ Resources](#Resources)
+    * [Books](#books)
+    * [Learning Links](#learning-links)
+    * [Key Service Documentation](#key-service-documentation)
+* [➤ Glossary](#glossary)
+
+      
+    
+    
+    
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
@@ -312,11 +334,11 @@ With one or more of these facets missing, a company faces something called the D
 
 # Tools
 
-<h3 align="left">Languages and Tools:</h3>
+## Languages and Tools
 <p align="left"> <a href="https://babeljs.io/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/babeljs/babeljs-icon.svg" alt="babel" width="40" height="40"/> </a> <a href="https://www.gnu.org/software/bash/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/gnu_bash/gnu_bash-icon.svg" alt="bash" width="40" height="40"/> </a> <a href="https://getbootstrap.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg" alt="bootstrap" width="40" height="40"/> </a> <a href="https://canvasjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/Hardik0307/Hardik0307/master/assets/canvasjs-charts.svg" alt="canvasjs" width="40" height="40"/> </a> <a href="https://www.chartjs.org" target="_blank" rel="noreferrer"> <img src="https://www.chartjs.org/media/logo-title.svg" alt="chartjs" width="40" height="40"/> </a> <a href="https://www.djangoproject.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/django/django-original.svg" alt="django" width="40" height="40"/> </a> <a href="https://www.docker.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> </a> <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a> <a href="https://www.figma.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/figma/figma-icon.svg" alt="figma" width="40" height="40"/> </a> <a href="https://firebase.google.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/> </a> <a href="https://flask.palletsprojects.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/pocoo_flask/pocoo_flask-icon.svg" alt="flask" width="40" height="40"/> </a> <a href="https://www.framer.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/framer/framer-icon.svg" alt="framer" width="40" height="40"/> </a> <a href="https://cloud.google.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg" alt="gcp" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://heroku.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/heroku/heroku-icon.svg" alt="heroku" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> <a href="https://jestjs.io" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/jestjsio/jestjsio-icon.svg" alt="jest" width="40" height="40"/> </a> <a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> <a href="https://mochajs.org" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/mochajs/mochajs-icon.svg" alt="mocha" width="40" height="40"/> </a> <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg" alt="mongodb" width="40" height="40"/> </a> <a href="https://nextjs.org/" target="_blank" rel="noreferrer"> <img src="https://cdn.worldvectorlogo.com/logos/nextjs-2.svg" alt="nextjs" width="40" height="40"/> </a> <a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a> <a href="https://www.postgresql.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original-wordmark.svg" alt="postgresql" width="40" height="40"/> </a> <a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a> <a href="https://redux.js.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" alt="redux" width="40" height="40"/> </a> <a href="https://sass-lang.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/sass/sass-original.svg" alt="sass" width="40" height="40"/> </a> <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind" width="40" height="40"/> </a> <a href="https://webpack.js.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/d00d0969292a6569d45b06d3f350f463a0107b0d/icons/webpack/webpack-original-wordmark.svg" alt="webpack" width="40" height="40"/> </a> </p>
 
 
-## Internal Ops
+## Internal Ops Tools
 
 As we are a fast moving team we use set of tools that enables to communicate sync and async where appropiate.
 
@@ -332,20 +354,15 @@ As we are a fast moving team we use set of tools that enables to communicate syn
 - [Confluence](https://adauris.atlassian.net/wiki/spaces/AA/overview?homepageId=196610) + [Notion](https://www.notion.so/adauris/Engineering-2058fbe4a0b143a4bb8316d7192ea679) (Documentation and Company/Product Sheets)
 - [dbdiagram](https://dbdiagram.io/) (SQL Schmea Designing)
 * [draw.io](http://draw.io)  ||  [Lucid](https://lucid.app/)  (for database schema and architecture designing)
-
-
-[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
-
-
-## Documentation 
-
-1. [Internal API](https://adauris.atlassian.net/wiki/spaces/AA/pages/253329409/Narration+Settings+API)
+* PRs of course and PR code comment threads
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
 
 # Environment Setup
+
+## Summary
 
 Currently, each service has it's own environment set up but there are a few major environment set up patterns. These environment patterns are:
 
@@ -356,6 +373,28 @@ Currently, each service has it's own environment set up but there are a few majo
 Other than heroku, our serverless microservices generally sit atop GCP Cloud Functions & Cloud Run where we iteract with development and production environments via a cloubuild.yaml and/or a Dockerfile.
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
+
+
+# Resources
+
+## Books
+Some of Ad Auris' Engineers' favorite books that will help guide you in our development process and for overall success.
+
+*  [Web scalability for startup engineers - tips & techniques for scaling your Web application](https://storage.googleapis.com/ad-auris-django-bucket/books/Web%20scalability%20for%20startup%20engineers%20_%20tips%20%26%20techniques%20for%20scaling%20your%20Web%20application%20(%20PDFDrive%20).pdf)
+* [A Handbook of Agile Software Craftsmanship By Robert C Martin](https://storage.googleapis.com/ad-auris-django-bucket/books/A%20Handbook%20of%20Agile%20Software%20Craftsmanship%20By%20Robert%20C%20Martin.pdf%20(%20PDFDrive%20).pdf)
+
+## Learning Links
+
+* [Web Dev Skills Map](https://andreasbm.github.io/web-skills/)
+    * Came across a particular concept you don't quite understand or need a refresher? At a high level this covers most of what you'll need to know as a web dev.
+
+
+## Key Service Documentation
+
+1. [Internal API](https://adauris.atlassian.net/wiki/spaces/AA/pages/253329409/Narration+Settings+API)
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
+
 
 # Glossary
 
