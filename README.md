@@ -19,6 +19,10 @@ The Purpose of this repo is for it to act as a central source of truth for schem
     * [Architectural Priorities](#architectural-priorities)
     * [Coding Guidelines](#coding-guidelines)
     * [Key Protocols](#key-protocols)
+* [➤ UX and Engineering](#ux-and-engineering)
+    * [Best Practices](#best-practices)
+    * [Be a UX Unicorn](#be-a-ux-unicorn)
+    * [Articles](#articles)
 * [➤ Apps](#apps)
     * [App List](app-list)
 * [➤ Architecture](#architecture)
@@ -214,6 +218,56 @@ At a high level
 
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
+
+
+# UX and Engineering
+
+## Best Practices
+
+At Ad Auris, if you're a frontend dev or even a full-stakc dev and you're working on some frontend related task, inherently, you adopt the responsibilities of a UX Engineering.
+Those responsibilities being: 
+* Transform the design language into a component library, coded in a framework or library
+* Promote the adoption of the design system throughout the organization
+* Turn low-fidelity designs into high-fidelity prototypes using the component library
+* Improve communication and collaboration between the engineering and design team
+
+
+A few rules of thumb for both designers and engineers (UX, FE):
+* Designers need to think beyond just delivering the design itself.
+* Designers should spend more one-on-one time with engineers.
+* Engineers should be familiar with basic fundamentals of designs.
+
+
+#### Where UX Design, UX Engineering, and Frontend Dev Roles Overlap
+![Role Chart](https://miro.medium.com/max/2000/1*yH7W8KEcD09-VUORdhg46Q.png)
+
+As you can see here, as a front-end dev you must go beyond the code and be hyper aware about the true objectives and requirements of any frontend project. This is typically represented by the responsibilties a front end dev has with UX engineering, and that is where the collaboration overlap rests with the UX designer.
+
+
+
+#### The Design to implementation Process
+From business requirements to release.
+![design process](https://miro.medium.com/max/2500/1*9zv-4kfXtC9QK8jr3DL2IA@2x.png)
+
+THe main point of this chart is to show how there are multiple iterative steps along the development process where key communication and wokrflow points exist for design and eng teams.
+
+
+## Be a UX Unicorn
+
+![ux unicorn](https://res.cloudinary.com/springboard-images/image/upload/w_1080,c_limit,q_auto,f_auto,fl_lossy/wordpress/2018/09/full-stack-designer-1024x675.jpg)
+
+At Ad Auris, wheather you're a front end dev, or a full-stack dev on a frontend project, we inherently must become UX Unicorn, or rather a full-stack designer. That means having the sufficient understanding of the given projects UX design, UI design, and of course the dev implementation. By being a UX unicorn it means you can better iterate on projects, address user pain points with much more finesse, and an overall more robust peice of shipped software. 
+
+### Articles
+* [Guideline on how Engs and UX should Interact](https://uxdesign.cc/ui-design-implementation-guideline-for-engineers-and-designers-158afbab680a)
+* [UX Engineering](https://blog.devmountain.com/uxe-what-is-a-ux-engineer/)
+* [5 Rules on Eng Design collaboration](https://uxdesign.cc/5-rules-for-designer-engineer-collaboration-182fd74bd09f)
+
+
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
+
 
 # Apps
 (Client or Sales Facing)
