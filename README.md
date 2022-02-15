@@ -45,6 +45,8 @@ The Purpose of this repo is for it to act as a central source of truth for schem
         * [async-tools](#async-tools)
 * [➤ Environment Setup](#environment-setup)
     * [Summary](#summary)
+* [➤ Branching Strategy](#branching-strategy)
+   * [Ad Auris Branching Conventions](#ad-auris-branching-conventions)
 * [➤ Resources](#Resources)
     * [Books](#books)
     * [Learning Links](#learning-links)
@@ -502,6 +504,48 @@ Other than heroku, our serverless microservices generally sit atop GCP Cloud Fun
 
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
+# Branching Strategy
+
+The purpose of this section is to outline Ad Auris's git branching strategy for optimized continuous delivery of code. At a high leve we follow an [environment branching strategy](https://www.wearefine.com/news/insights/env-branching-with-git/). We also fluidly follow [these practices of branch naming convetions](https://dev.to/couchcamote/git-branching-name-convention-cch)
+
+We avoid commiting directly to our environment branches and we merge our feature & other development branches into the environment branches. 
+
+### Ad Auris Branching Conventions 
+
+- Production Branches: 
+   - **main/master** 
+   - (if greenfield project default to main)
+   - Pushes to main/master will typically redploy the production service
+
+- Staging Branch: 
+   - **Staging**
+   - Pushes to staging will typically redploy the staging version of the service
+   - This is used for final QA of a service's new changes, post-PR Approval
+
+- Develop Branches:
+   - For our microservices in particular We typically don't use a trunk develop branch but we branch off staging to create a dev specific development branch
+   - naming convention should follow:
+      - feature/XYZ
+      - E.G: feature/integrate-rssparser
+   - For our Full Stack Apps such as the Dashboard, Play App, Narration Widget, and Internal Tool the **develop branch** plays a key role.
+   - Devs should be branching off from develop, creating feature branches, and PR back into Develop.
+      1. Dev Branches off develop
+      2. Dev Creates feature/podcast-page-update
+      3. Dev finishes task and creates a PR back into Develop
+      4. Pending Approval, code is merged into develop
+      5. For QA of final project/update etc, we do a final project QA off of "staging" branch.
+      6. Bug is identified in QA so then Dev creates a branch called bugfix/XYZ off of develop
+      7. Pending Approval, code is remerged again into staging
+      8. Finally, the production environment branch is updated and feature is live & in production!
+
+
+
+## Articles
+- https://sairamkrish.medium.com/git-branching-strategy-for-true-continuous-delivery-eade4435b57e
+- https://dev.to/couchcamote/git-branching-name-convention-cch
+
+
+[![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
 # Resources
 
