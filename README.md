@@ -448,6 +448,24 @@ Sprints are a staple of development, and our unifiying work stream.
 > As you can see with the agile development framework, it cyclically flows in line with the sprint framework. Infact, one can argue that sprints are really developed around its heart which is agile development.  
 
 
+## Work Estimation
+
+At Ad Auris, we use a t-shirt size system and correlate them to rough story points in the form of fibonaci sizing. We equate to story points for high fidelity of work tracking data on Jira. The most important aspect here is understanding the t-shirt sizes.
+
+### T-shirt sizes: 
+
+- XXS = 1 hour = 1 point
+- XS = Couple of hours = 2 points
+- S = 1 day = 5 points
+- M = 2-3 days = 21 points
+- L = 4-5 days = 55 points
+- XL = 1 week+ (6-7 days) = 89 points
+- XXL = 1.5 weeks = 144 points
+- XXXL = 2 weeks = 233 points
+
+
+
+
 [![-----------------------------------------------------](https://raw.githubusercontent.com/andreasbm/readme/master/assets/lines/colored.png)](#table-of-contents)
 
 
