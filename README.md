@@ -89,16 +89,16 @@ The Purpose of this repo is for it to act as a central source of truth for schem
   * **Single Responsibility** - units of software do 1 thing well, and only 1 thing. This is fractal and applies to lines of code, functions, classes, services, systems, and apps.
 2. Transparent & manageable - logs, analytics, error reporting, separation of config from code, and real-time adjustments are good
 
-By following these 2 top technical priorities, we get two important emergent properties: **robustness** and **scalability**
+By following these 2 top technical priorities, we get two important emergent properties: **robustness** and **scalability** while being able to maintian speed of shipping 🛳️
 
 Our full set of technical priorities, in order:
 
-1. Simple & DRY with a single responsibility
-2. Transparent & manageable
-3. Secure
-4. Consistent
-5. Documented
-6. Tested
+1. Speed to Market
+2. Simple & DRY with a single responsibility
+3. Transparent & manageable
+5. Consistent
+6. Documented
+7. Tested
 
 Developers are held accountable to these technical priorities. Code reviews are structured around these technical priorities.
 
@@ -420,11 +420,13 @@ Sprints are a staple of development, and our unifiying work stream.
 * Engineering Team Brainstorm
     * Eng then brainstorms and iterates on the inital tech scoping to find the most optimal path for success given the business and technical constraints/requirements.
 * Final Tech Spec Sheet is written up
-* Breakdown of Task
+* Breakdown of Tasks
     * We as a team parse through the spec sheet and break down tasks on an aggregate and indiviual level.
     * *Tickets issued on Jira (Epics, stories, tasks)*
 * Estimation of Development
     * Once tasks are set we as a team and individually we scope and set estimation for deliverables.
+* Sprint Kickoff
+*    Team rallys during the Sprint kickoff and we do final prioritization and selection of sprint tickets 
 * Hit the ground
     * This when the coding actually begins and the development period is set
 * Feedback Loop
@@ -437,7 +439,7 @@ Sprints are a staple of development, and our unifiying work stream.
     * We ensure we try to follow some form of testing framework, generally TDD but read [Engineering Best Practices](#engineering-best-practices) on more on this.
 * Final Merge to production
 * Product Develivered
-* Sprint Review
+* Sprint Retro
     * Here we discover what went well, what needs improvement, and iterate on the process all together. Each sprint is different as we improve.
     
 
@@ -445,7 +447,16 @@ Sprints are a staple of development, and our unifiying work stream.
 
 ![Agile Development](https://storage.googleapis.com/ad-auris-django-bucket/media/Agile-Methodology.png)
 
-> As you can see with the agile development framework, it cyclically flows in line with the sprint framework. Infact, one can argue that sprints are really developed around its heart which is agile development.  
+> As you can see with the agile development framework, it cyclically flows in line with the sprint framework. Infact, one can argue that sprints are really developed around its heart which is agile development.
+
+
+We are startup of self-organizing teams. This is critical❗ ⚠️ 
+![image](https://github.com/Ad-Auris/engineering-data-room/assets/62218708/feb5c338-4be4-4003-b2f5-ba95424ceb91)
+![image](https://github.com/Ad-Auris/engineering-data-room/assets/62218708/4ec3d211-d6e3-4eb0-a10f-1d7c0baabc73)
+- Mangers are servent leaders
+- Customer Driven
+- Decentralization when possible is preferred under the guise of a unified goal
+- Continuous improvement
 
 
 ## Work Estimation
@@ -454,14 +465,14 @@ At Ad Auris, we use a t-shirt size system and correlate them to rough story poin
 
 ### T-shirt sizes: 
 
-- XXS = 1 hour = 1 point
-- XS = Couple of hours = 2 points
-- S = 1 day = 5 points
-- M = 2-3 days = 21 points
-- L = 4-5 days = 55 points
-- XL = 1 week+ (6-7 days) = 89 points
-- XXL = 1.5 weeks = 144 points
-- XXXL = 2 weeks = 233 points
+- XXS = 10 min - 1 hour = 0.5 points
+- XS = Couple of hours = 1 point
+- S = ~1 day = 2 points
+- M = ~2-3 days = 3-5 points
+- L = ~4-5 days = 6-7 points
+- XL = ~1 week+ (6-7 days) = 10+ points
+- XXL = ~1.5 weeks = 14+ points
+- XXXL = ~2 weeks = 18+ points
 
 
 
@@ -592,7 +603,10 @@ A Log of commonly used terms and acronyms at Ad Auris
 
 * CT = Customization Template
 * Sprint = Focused Build Period
-* GAM = Google Ad Manager 
+* GAM = Google Ad Manager
+* GCP = Google Cloud Platform
+* AWS = Amazon Web Services
+* DO = Digital Ocean
 * PR = Pull Request
 * C-Suite = executive team 
 * SRP = Single Responsbility Principle
